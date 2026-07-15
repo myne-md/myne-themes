@@ -1,0 +1,83 @@
+# Woodpecker CI — myne-themes
+# Self-hosted Woodpecker (cicd.myne.md) via Forgejo (git.myne.md) pull-mirror of
+# GitHub — the SAME setup as the main repo + companions (not GitHub Actions).
+#
+# Gate for theme submissions. Automation does the OBJECTIVE checks; a maintainer
+# still reviews for deception/taste/quality/licensing before merge (no auto-merge;
+# see GOVERNANCE.md). Each step runs in its own container — installed packages do
+# NOT inherit between steps.
+
+when:
+  - event: [push, pull_request, manual]
+    branch: [main]
+
+steps:
+  # ─── Value allowlist — the EXACT client validator ──────────────
+  # Builds `theme-validator` from the main `myne` repo and runs its `validate`
+  # binary on every theme, so this repo can never host a theme the desktop client
+  # would reject (no reimplementation, no drift). MAIN_REPO_URL points at the
+  # internal Forgejo mirror (always reachable by the runner); set it as a secret
+  # if the path differs or the main repo is still private (add a read deploy key).
+  validate:
+    image: rust:1.96.0-slim
+    environment:
+      MAIN_REPO_URL:
+        from_secret: main_repo_url
+    commands:
+      - apt-get update && apt-get install -y --no-install-recommends git ca-certificates
+      - git clone --depth 1 "${MAIN_REPO_URL:-https://git.myne.md/myne/myne.git}" _myne
+      - cargo build --release -p theme-validator --bin validate --manifest-path _myne/Cargo.toml
+      - |
+        fail=0
+        for f in themes/*/theme.json; do
+          [ -e "$f" ] || continue
+          if _myne/target/release/validate "$f"; then echo "PASS  $f"; else echo "FAIL  $f"; fail=1; fi
+        done
+        exit $fail
+
+  # ─── Contrast + metadata lints + unit tests ────────────────────
+  # The two checks the allowlist can't do: WCAG contrast (readability) and
+  # meta.json shape/license. Zero-dependency (no ajv) — see tools/lint-theme.mjs.
+  lint:
+    image: node:22-slim
+    commands:
+      - node --test tools/*.test.mjs
+      - node --test tools/build-index.test.mjs
+      - |
+        fail=0
+        for d in themes/*/; do
+          [ -e "$d/theme.json" ] || continue
+          node tools/lint-theme.mjs "$d" || fail=1
+        done
+        exit $fail
+
+  # ─── Failure notification (parity with the other repos) ────────
+  # Token + group come ONLY from CI secrets; a missing secret makes the step skip
+  # silently, and failure:ignore keeps it from ever failing the pipeline.
+  notify-failure:
+    image: alpine:3.21
+    depends_on:
+      - name: validate
+        optional: true
+      - name: lint
+        optional: true
+    environment:
+      PUSHOVER_TOKEN:
+        from_secret: pushover_token
+      PUSHOVER_GROUP:
+        from_secret: pushover_group
+    commands:
+      - apk add --no-cache curl
+      - |
+        if [ -z "$PUSHOVER_TOKEN" ]; then echo "pushover secret absent; skipping"; exit 0; fi
+        curl -fsS -m 15 \
+          --data-urlencode "token=$PUSHOVER_TOKEN" \
+          --data-urlencode "user=$PUSHOVER_GROUP" \
+          --data-urlencode "title=❌ $CI_REPO_NAME failed · $CI_COMMIT_BRANCH" \
+          --data-urlencode "message=$CI_COMMIT_AUTHOR · $CI_COMMIT_MESSAGE" \
+          --data-urlencode "url=$CI_PIPELINE_URL" \
+          https://api.pushover.net/1/messages.json
+    when:
+      - event: [push, pull_request, manual]
+        status: failure
+    failure: ignore

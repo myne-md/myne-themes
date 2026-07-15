@@ -1,0 +1,9 @@
+{
+  "name": "Tokyo Night",
+  "author": "Enkia",
+  "description": "A clean, dark theme inspired by the lights of downtown Tokyo at night — blues, purples, and neon accents.",
+  "license": "MIT",
+  "appearance": "dark",
+  "upstream": "https://github.com/enkia/tokyo-night-vscode-theme",
+  "port_by": "Myne"
+}

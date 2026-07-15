@@ -1,0 +1,9 @@
+{
+  "name": "Solarized Light",
+  "author": "Ethan Schoonover",
+  "description": "The precision-tuned Solarized palette, light mode — warm cream base with the same balanced accents.",
+  "license": "MIT",
+  "appearance": "light",
+  "upstream": "https://ethanschoonover.com/solarized/",
+  "port_by": "Myne"
+}

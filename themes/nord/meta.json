@@ -1,0 +1,9 @@
+{
+  "name": "Nord",
+  "author": "Arctic Ice Studio & Sven Greb",
+  "description": "An arctic, north-bluish palette — calm frost accents over polar-night surfaces.",
+  "license": "MIT",
+  "appearance": "dark",
+  "upstream": "https://www.nordtheme.com",
+  "port_by": "Myne"
+}

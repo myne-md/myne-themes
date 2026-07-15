@@ -1,0 +1,9 @@
+{
+  "name": "Catppuccin Mocha",
+  "author": "Catppuccin",
+  "description": "The darkest of Catppuccin's soothing pastel flavours — muted lavender and pink on deep indigo.",
+  "license": "MIT",
+  "appearance": "dark",
+  "upstream": "https://catppuccin.com",
+  "port_by": "Myne"
+}

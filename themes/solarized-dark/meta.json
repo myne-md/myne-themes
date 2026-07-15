@@ -1,0 +1,9 @@
+{
+  "name": "Solarized Dark",
+  "author": "Ethan Schoonover",
+  "description": "The precision-tuned Solarized palette, dark mode — low-glare teal base with sixteen balanced accents.",
+  "license": "MIT",
+  "appearance": "dark",
+  "upstream": "https://ethanschoonover.com/solarized/",
+  "port_by": "Myne"
+}

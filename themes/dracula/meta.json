@@ -1,0 +1,9 @@
+{
+  "name": "Dracula",
+  "author": "Dracula Theme (Zeno Rocha & contributors)",
+  "description": "The famous dark theme — deep blue-grey with vivid purple, pink, and green accents.",
+  "license": "MIT",
+  "appearance": "dark",
+  "upstream": "https://draculatheme.com",
+  "port_by": "Myne"
+}

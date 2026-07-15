@@ -1,0 +1,9 @@
+{
+  "name": "Gruvbox Dark",
+  "author": "Pavel Pertsev (morhetz)",
+  "description": "Retro-groove warm dark theme — earthy browns with bright orange, yellow, and aqua.",
+  "license": "MIT",
+  "appearance": "dark",
+  "upstream": "https://github.com/morhetz/gruvbox",
+  "port_by": "Myne"
+}

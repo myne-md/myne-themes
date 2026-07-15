@@ -1,0 +1,10 @@
+# Every submission requires maintainer review before merge (no auto-merge).
+# Adjust the handle(s) below to the actual myne-md maintainer team.
+* @furkanunsalan
+
+# Load-bearing tooling + governance get the same owner explicitly.
+/tools/       @furkanunsalan
+/schema/      @furkanunsalan
+/.github/     @furkanunsalan
+/GOVERNANCE.md @furkanunsalan
+/LICENSING.md  @furkanunsalan

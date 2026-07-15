@@ -1,0 +1,9 @@
+{
+  "name": "One Dark",
+  "author": "Atom (One Dark)",
+  "description": "Atom's iconic One Dark — a balanced blue-grey theme with soft, legible syntax accents.",
+  "license": "MIT",
+  "appearance": "dark",
+  "upstream": "https://github.com/atom/atom",
+  "port_by": "Myne"
+}

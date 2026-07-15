@@ -1,0 +1,23 @@
+{
+  "--paper": "#faf6ee",
+  "--paper-2": "#f2ede1",
+  "--paper-3": "#e9e2d2",
+  "--ink-0": "#1a1712",
+  "--ink-1": "#2b2720",
+  "--ink-2": "#5c564a",
+  "--ink-3": "#8a8474",
+  "--line-1": "#e4ddcd",
+  "--line-2": "#d6cdb8",
+  "--line-3": "#c3b9a1",
+  "--accent": "#b3603c",
+  "--accent-hover": "#9f5333",
+  "--accent-press": "#8a4629",
+  "--accent-soft": "#f2e3d8",
+  "--accent-on": "#ffffff",
+  "--danger": "#b5442f",
+  "--danger-soft": "#f6e0da",
+  "--warning": "#8a5f1c",
+  "--warning-soft": "#f5e9cf",
+  "--success": "#4f7a3f",
+  "--success-soft": "#e2eeda"
+}

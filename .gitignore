@@ -1,0 +1,21 @@
+# Node tooling (CI validator wrapper, index/preview generators)
+node_modules/
+.pnpm-store/
+npm-debug.log*
+
+# Generated gallery artifacts (index + CI-rendered previews are build outputs)
+dist/
+build/
+index.json
+/previews/
+themes/**/preview.png
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Rust build (if the validate binary is built here)
+target/

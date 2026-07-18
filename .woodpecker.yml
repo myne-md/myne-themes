@@ -8,8 +8,9 @@
 # NOT inherit between steps.
 
 when:
-  - event: [push, pull_request, manual]
+  - event: [push, pull_request]
     branch: [main]
+  - event: manual
 
 steps:
   # ─── Value allowlist — the EXACT client validator ──────────────

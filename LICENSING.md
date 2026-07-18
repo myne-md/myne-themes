@@ -30,6 +30,12 @@ and links the source in `upstream`. Only permissive SPDX licenses are accepted (
 forbid redistribution/adaptation is **not** admissible. Redistributing here honors
 the upstream terms (attribution + license text preserved via `meta.json`).
 
+The bundled ports' upstream copyright lines, the MIT permission text they are
+redistributed under, and the trademark / non-affiliation disclaimer for the scheme
+names live in [`NOTICE`](NOTICE). Adding a new port adds its attribution there in
+the same PR. A port reproduces only the upstream **palette** (color values,
+re-expressed into Myne's own tokens) — not upstream code, token names, or files.
+
 ## Tooling → AGPL-3.0
 
 The CI scripts, lints, and gallery generators are **AGPL-3.0**, matching the

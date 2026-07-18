@@ -4,6 +4,6 @@
   "description": "Atom's iconic One Dark — a balanced blue-grey theme with soft, legible syntax accents.",
   "license": "MIT",
   "appearance": "dark",
-  "upstream": "https://github.com/atom/atom",
+  "upstream": "https://github.com/atom/one-dark-syntax",
   "port_by": "Myne"
 }

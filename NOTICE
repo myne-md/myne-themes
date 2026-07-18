@@ -1,0 +1,111 @@
+Third-party notices — myne-themes
+==================================
+
+This repository bundles a small set of themes that are faithful ports of
+well-known, community color schemes. A Myne theme is a JSON map of *Myne's own*
+design tokens (`--paper`, `--ink-*`, `--accent`, …) to color values; a port
+reproduces an upstream scheme's palette in that map. It copies no upstream code,
+token names, or files — only the color values, re-expressed into Myne's schema.
+
+The ports below are redistributed under their upstream license (not relicensed),
+with credit to the original author and a link to the source, as declared in each
+theme's `themes/<slug>/meta.json`. See `LICENSING.md` for the subtree split. The
+original Myne themes (`nocturne`, `warm-paper`) are the contributor's own work
+under CC-BY-4.0 and are not listed here.
+
+
+Ported themes and their upstream attribution
+--------------------------------------------
+
+  Catppuccin Mocha  · themes/catppuccin-mocha
+    Author     Catppuccin  (https://catppuccin.com)
+    Source     https://github.com/catppuccin/catppuccin
+    License    MIT — Copyright (c) 2021 Catppuccin
+    Policy     Catppuccin publishes port guidance
+               (https://github.com/catppuccin/catppuccin/blob/main/docs/port-creation.md)
+               and actively welcomes ports. This port keeps the upstream flavour
+               name ("Mocha") and palette, and follows MIT attribution.
+
+  Dracula  · themes/dracula
+    Author     Dracula Theme — Zeno Rocha & contributors  (https://draculatheme.com)
+    Source     https://github.com/dracula/dracula-theme
+    License    MIT — Copyright (c) 2023 Dracula Theme
+    Note       This is the free, MIT-licensed Dracula palette. It is NOT the
+               separate commercial "Dracula PRO" product.
+
+  Gruvbox Dark  · themes/gruvbox-dark
+    Author     Pavel Pertsev (morhetz)
+    Source     https://github.com/morhetz/gruvbox
+    License    MIT/X11 — declared in the project's README (the source repo ships
+               no standalone LICENSE file; there is no formal upstream copyright
+               line to reproduce). Credit: Pavel Pertsev (morhetz).
+
+  Nord  · themes/nord
+    Author     Arctic Ice Studio & Sven Greb  (https://www.nordtheme.com)
+    Source     https://github.com/nordtheme/nord
+    License    MIT — Copyright (c) 2016-present Sven Greb <development@svengreb.de>
+    Policy     Nord publishes no separate port-branding/trademark policy; its
+               terms are MIT and it runs an official "Ports" directory
+               (https://www.nordtheme.com/ports). This is an independent port,
+               not an official Nord Ports entry; MIT attribution is preserved.
+
+  One Dark  · themes/one-dark
+    Author     Atom — One Dark  (originally GitHub, Inc.)
+    Source     https://github.com/atom/one-dark-syntax
+    License    MIT — Copyright (c) 2016 GitHub Inc.
+
+  Solarized Dark  · themes/solarized-dark
+  Solarized Light · themes/solarized-light
+    Author     Ethan Schoonover  (https://ethanschoonover.com/solarized/)
+    Source     https://github.com/altercation/solarized
+    License    MIT — Copyright (c) 2011 Ethan Schoonover
+
+  Tokyo Night  · themes/tokyo-night
+    Author     Enkia
+    Source     https://github.com/enkia/tokyo-night-vscode-theme
+    License    MIT — Copyright (c) 2018-present Enkia
+
+
+MIT license text
+----------------
+
+The MIT-licensed ports above are redistributed under the following terms. The
+copyright notice for each is listed with the theme above.
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+
+Trademarks and non-affiliation
+------------------------------
+
+"Catppuccin", "Dracula", "Gruvbox", "Nord", "One Dark", "Solarized", and
+"Tokyo Night" are the names of their respective color schemes and may be the
+trademarks or protected marks of their owners. Myne uses each name only to
+identify the palette that the corresponding theme faithfully reproduces
+(nominative use).
+
+Myne, the myne-themes repository, and these ports are **not affiliated with,
+endorsed by, sponsored by, or otherwise connected to** the authors or projects
+behind those schemes. All product names, logos, and brands are the property of
+their respective owners.
+
+None of the bundled themes is named after a private individual; the personal
+names above (Zeno Rocha, Pavel Pertsev, Sven Greb, Ethan Schoonover) appear
+solely as license-required author attribution, not as theme names, so no
+publicity/personality-rights consent is implicated.

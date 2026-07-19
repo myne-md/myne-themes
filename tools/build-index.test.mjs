@@ -1,6 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildIndex, buildRow, swatches, REPO } from "./build-index.mjs";
+import { loadSchema } from "./lint-theme.mjs";
+
+// SPDX ids the gallery accepts — the single source of truth is the meta schema
+// (a faithful port keeps its upstream license, usually MIT), NOT a fixed default.
+const ALLOWED_LICENSES = loadSchema().properties.license.enum;
 
 const theme = {
   "--paper": "#17150f",
@@ -61,7 +66,10 @@ test("buildIndex reads the real seed themes, sorted, one row each", () => {
   assert.ok(slugs.includes("warm-paper"));
   for (const row of idx) {
     assert.ok(row.name && row.author && row.description, "row has metadata");
-    assert.equal(row.license, "CC-BY-4.0");
+    assert.ok(
+      ALLOWED_LICENSES.includes(row.license),
+      `${row.slug}: license "${row.license}" not in the schema's allowed SPDX set`,
+    );
     assert.ok(row.swatches.background.startsWith("#"));
   }
 });

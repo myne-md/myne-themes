@@ -24,9 +24,5 @@
   "--syntax-string": "#9bbf74",
   "--syntax-comment": "#6b6555",
   "--syntax-number": "#e0a35f",
-  "--syntax-function": "#7fb0d9",
-  "--label-red": "#e06a54",
-  "--label-orange": "#d99a4e",
-  "--label-green": "#7fae63",
-  "--label-blue": "#7fb0d9"
+  "--syntax-function": "#7fb0d9"
 }

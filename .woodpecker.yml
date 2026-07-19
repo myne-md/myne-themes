@@ -16,17 +16,23 @@ steps:
   # ─── Value allowlist — the EXACT client validator ──────────────
   # Builds `theme-validator` from the main `myne` repo and runs its `validate`
   # binary on every theme, so this repo can never host a theme the desktop client
-  # would reject (no reimplementation, no drift). MAIN_REPO_URL points at the
-  # internal Forgejo mirror (always reachable by the runner); set it as a secret
-  # if the path differs or the main repo is still private (add a read deploy key).
+  # would reject (no reimplementation, no drift). The main repo is private, so it
+  # is cloned from GitHub with `myne_repo_token` — a read-scoped GitHub fine-
+  # grained PAT (myne-md org, Contents+Metadata read-only) provided as an ORG-level
+  # Woodpecker secret. Note it authenticates against github.com, NOT the Forgejo
+  # mirror the runner itself uses. Only a bare dollar-VAR is referenced, never
+  # brace- or paren-substitution syntax — even a literal brace token in a comment
+  # makes Woodpecker's env-substitution pass fail config-compile. CAUTION:
+  # referencing a secret this repo can't see also errors the WHOLE pipeline at
+  # config-compile — keep this name in sync with the org secret.
   validate:
     image: rust:1.96.0-slim
     environment:
-      MAIN_REPO_URL:
-        from_secret: main_repo_url
+      MYNE_REPO_TOKEN:
+        from_secret: myne_repo_token
     commands:
       - apt-get update && apt-get install -y --no-install-recommends git ca-certificates
-      - git clone --depth 1 "${MAIN_REPO_URL:-https://git.myne.md/myne/myne.git}" _myne
+      - git clone --depth 1 "https://x-access-token:$MYNE_REPO_TOKEN@github.com/myne-md/myne.git" _myne
       - cargo build --release -p theme-validator --bin validate --manifest-path _myne/Cargo.toml
       - |
         fail=0

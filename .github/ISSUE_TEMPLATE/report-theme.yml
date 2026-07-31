@@ -1,0 +1,34 @@
+name: Report a theme
+description: Flag a published theme as deceptive, infringing, or malicious.
+title: "[report]: "
+labels: [takedown-report]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        See [GOVERNANCE.md](../GOVERNANCE.md) Takedown policy.
+
+        Note: a takedown removes the theme from the repo and gallery. It **cannot** uninstall copies already downloaded to a device — Myne is local-first and never reaches into your device. Re-validation on import remains the client-side safety.
+  - type: input
+    id: theme
+    attributes:
+      label: Theme (slug / folder)
+      placeholder: "themes/<slug>/"
+    validations:
+      required: true
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Reason for the report
+      options:
+        - Deceptive (a valid palette engineered to mislead, e.g. --danger made to look safe, unreadable-by-design contrast)
+        - Infringing (clones a trademarked brand or a paid/proprietary theme, or violates the CC-BY-4.0 grant)
+        - Malicious / abusive (weaponized theme surface, or abusive metadata)
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Details / evidence
+    validations:
+      required: true

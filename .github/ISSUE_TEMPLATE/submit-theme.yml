@@ -1,0 +1,43 @@
+name: Submit a theme (guidance)
+description: Not sure how to contribute a theme? Start here, then open a PR.
+title: "[theme]: "
+labels: [theme-submission]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The fastest path is a **pull request**, not an issue — see [CONTRIBUTING.md](../CONTRIBUTING.md). A theme is one folder, one PR:
+
+        ```
+        themes/<slug>/theme.json   (the validated palette)
+        themes/<slug>/meta.json    (name, author, description, license: CC-BY-4.0)
+        ```
+
+        Use this issue only if you want help or feedback **before** opening the PR.
+  - type: input
+    id: name
+    attributes:
+      label: Theme name
+    validations:
+      required: true
+  - type: textarea
+    id: looks
+    attributes:
+      label: What does it look like?
+      description: A sentence or two.
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Light, dark, or both?
+      options:
+        - Light
+        - Dark
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: help
+    attributes:
+      label: What do you need help with?

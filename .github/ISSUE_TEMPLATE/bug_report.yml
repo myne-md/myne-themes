@@ -1,0 +1,56 @@
+name: Bug report
+description: Something in the theme validator, gallery, preview render, or repo tooling is broken (not a theme submission).
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        To **submit** a theme, use the theme templates instead. This is for the tooling around themes. The `theme-validator` is security-load-bearing — if it accepts a value it shouldn't, or rejects a valid one, that matters.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. …
+        2. …
+        3. …
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part?
+      options:
+        - theme-validator
+        - Gallery
+        - Preview render (CI)
+        - Schema
+        - Other tooling
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / output
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this isn't a duplicate.
+          required: true
+        - label: This is tooling, not a theme submission or takedown report.
+          required: true

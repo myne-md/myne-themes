@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest an enhancement to the theme format, validator, or gallery.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The `theme-validator` grammar is a **security boundary** — the WebView CSP carries `style-src 'unsafe-inline'`, so any theme value that reaches the DOM executes. The desktop plugin and this marketplace run the exact same validator crate so the grammar cannot drift. Proposals that widen the allowed value shapes need to account for that.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this isn't a duplicate.
+          required: true
+        - label: If this widens what the validator accepts, I've considered the CSP style-value execution surface.
+          required: true

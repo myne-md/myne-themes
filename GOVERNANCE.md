@@ -13,8 +13,10 @@
 
 Every PR is gated in two layers:
 
-1. **CI (objective, automated)** — runs the exact Myne `theme-validator`, a WCAG
-   contrast lint, and a `meta.json` schema/license check. All must pass.
+1. **CI (objective, automated)** — runs the exact Myne `theme-validator`, which
+   enforces both the value allowlist and the WCAG contrast floors (the same code
+   the client runs on import, so CI and install can never disagree), plus a
+   `meta.json` schema/license check. All must pass.
 2. **Maintainer review (subjective, human)** — judges what CI cannot: semantic
    color deception (e.g. a destructive-action color made to look safe), overall
    quality/taste, spam, and licensing legitimacy.

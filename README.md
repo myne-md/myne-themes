@@ -61,9 +61,10 @@ takedown policy: **[GOVERNANCE.md](GOVERNANCE.md)**.
 
 ## Status
 
-**Early.** The repo layout, contribution flow, CI hard-gate (real validator +
-WCAG contrast + metadata/license lints), gallery build (index + CI-rendered
-previews), and the `myne.md/themes` section are being stood up. See
+**Early.** The repo layout, contribution flow, CI hard-gate (the real validator,
+which carries both the value allowlist and the WCAG contrast floors, plus a
+metadata/license lint), gallery build (index + CI-rendered previews), and the
+`myne.md/themes` section are being stood up. See
 [`CONTRIBUTING.md`](CONTRIBUTING.md) to submit a theme.
 
 ## License

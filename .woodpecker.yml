@@ -13,7 +13,7 @@ when:
   - event: manual
 
 steps:
-  # ─── Value allowlist — the EXACT client validator ──────────────
+  # ─── Value allowlist + contrast gate — the EXACT client validator ──
   # Builds `theme-validator` from the main `myne` repo and runs its `validate`
   # binary on every theme, so this repo can never host a theme the desktop client
   # would reject (no reimplementation, no drift). The main repo is private, so it
@@ -41,12 +41,40 @@ steps:
           if _myne/target/release/validate "$f"; then echo "PASS  $f"; else echo "FAIL  $f"; fail=1; fi
         done
         exit $fail
+      # The gate has to be shown REFUSING something, or a binary that silently
+      # accepted everything would look identical to a working one. good.json must
+      # pass and bad.json (ink ~ paper) must be rejected; either surprise fails.
+      - |
+        _myne/target/release/validate fixtures/contrast/good.json || { echo "good.json should PASS"; exit 1; }
+        if _myne/target/release/validate fixtures/contrast/bad.json; then
+          echo "bad.json should have been REFUSED by the contrast gate"; exit 1
+        fi
+        echo "contrast gate verified: good passes, bad refused"
+      # The ornament vocabulary, both directions: a theme using every primitive
+      # must validate, and one naming a variant this build does not know must
+      # PASS with a warning — a submission may target a newer client, and the
+      # older one degrades to plain rather than breaking (myne#394).
+      - |
+        _myne/target/release/validate fixtures/ornament/all-primitives.json || { echo "all-primitives should PASS"; exit 1; }
+        out=$(_myne/target/release/validate fixtures/ornament/unknown-variant.json 2>&1) || { echo "unknown variant should PASS with a warning"; exit 1; }
+        case "$out" in *"unrecognized ornament value"*) ;; *) echo "expected a warning, got: $out"; exit 1;; esac
+        echo "ornament vocabulary verified: all values accepted, unknown one warns"
 
-  # ─── Contrast + metadata lints + unit tests ────────────────────
-  # The two checks the allowlist can't do: WCAG contrast (readability) and
-  # meta.json shape/license. Zero-dependency (no ajv) — see tools/lint-theme.mjs.
+  # ─── Metadata lint + unit tests ────────────────────────────────
+  # What is left once contrast moved into the Rust validator (myne#394): the
+  # meta.json shape/license check, which the client has no opinion about.
+  # Zero-dependency (no ajv) — see tools/lint-theme.mjs.
   lint:
     image: node:22-slim
+    # `validate` clones the main repo into `_myne/`, and the workspace is shared
+    # between steps — so point the renderer's tests at it. Without this they
+    # SKIP (loudly, with a reason) rather than fail, because the shared apply
+    # helper they exercise ships in that repo; a skipped test that reads as green
+    # is the failure class this whole feature has been fighting (myne#394).
+    depends_on:
+      - validate
+    environment:
+      MYNE_DIR: _myne
     commands:
       - node --test tools/*.test.mjs
       - node --test tools/build-index.test.mjs

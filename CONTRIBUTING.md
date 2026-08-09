@@ -117,3 +117,55 @@ removed from the repo/gallery — see [`GOVERNANCE.md`](GOVERNANCE.md) and the
 removing a theme here stops offering it but does not uninstall existing copies.
 
 By contributing you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Ornament (optional)
+
+Beyond colour, a theme may select **ornament primitives** — generic visual parts
+Myne draws, chosen per role rather than per element (`myne` repo
+`docs/glossary.md`: *ornament primitive*, *ornament role*).
+
+Three roles — `surface` (page and panel grounds), `box` (callouts, code blocks,
+quotes, cards), `chrome` (tabs, buttons, bars).
+
+**The matrix is sparse: 18 cells, not 24.** A role accepts only the primitives
+that mean something for what it *is*. `chrome` is small, dense and repeated, so a
+torn edge on it reads as damage rather than as style; `surface` is a sheet of
+paper, so a ribbon belongs on the stationery sitting on it rather than on the
+sheet. A key outside this table is **stored and ignored** — it validates, it
+merges, it syncs, and it draws nothing, with no warning anywhere.
+
+| Key | Values | `surface` | `box` | `chrome` |
+|---|---|:--:|:--:|:--:|
+| `--<role>-frame` | `none` `hairline` `thick` `double` `inset` | ● | ● | ● |
+| `--<role>-shadow` | `none` `soft` `hard` `offset` | ● | ● | ● |
+| `--<role>-texture` | `none` `paper` `grain` `scanline` `grid` | ● | ● | ● |
+| `--<role>-ruled` | `none` `lines` `grid` `dotted` | ● | ● | — |
+| `--<role>-edge` | `plain` `torn` `serrated` `cut` | ● | ● | — |
+| `--<role>-fold` | `none` `folded` `dogear` | ● | ● | — |
+| `--<role>-perforation` | `none` `left` `top` `both` | ● | ● | — |
+| `--<role>-ribbon` | `none` `corner` `band` `label` | — | ● | — |
+| `--tint` / `--tint-strength` | a colour, and a 0..1 strength | **not role-scoped** | | |
+
+`theme-validator`'s `ROLE_PRIMITIVES` is the source of truth for this table; the
+`—` cells are the ones it refuses.
+
+Combinations are the point: thick frame + hard shadow + paper texture reads as a
+polaroid; ruled ground + left perforation as a notebook page; grid texture +
+hairline frame + no shadow as something technical.
+
+Every key is **optional** — a colour-only theme is still a complete theme, and
+the ten themes in this repo predate the vocabulary entirely. A value this
+client does not recognize is not an error: CI warns, and the primitive renders
+plain, so a theme may target a newer client without breaking on an older one.
+
+Two notes on scope. **`frame` and `shadow` inherit into nested roles** (they are
+set on the element itself), while the other six do not (they are set on the
+decoration layer) — so if you frame `surface` and do not want the boxes inside it
+framed, set the box frame to `none`. And **the tint wash is a single `--tint` /
+`--tint-strength` pair**, not one per role: it is composed on the shared layer,
+and its strength is capped in Myne's stylesheet so a wash can never bury text.
+
+Two things ornament cannot do, by design: it never changes where anything sits
+(it is paint, so a themed button is exactly where an unthemed one was), and the
+strength of anything rendered *behind text* is capped in Myne's own stylesheet —
+you cannot turn a texture up until the words disappear under it.

@@ -61,11 +61,15 @@ takedown policy: **[GOVERNANCE.md](GOVERNANCE.md)**.
 
 ## Status
 
-**Early.** The repo layout, contribution flow, CI hard-gate (the real validator,
-which carries both the value allowlist and the WCAG contrast floors, plus a
-metadata/license lint), gallery build (index + CI-rendered previews), and the
-`myne.md/themes` section are being stood up. See
-[`CONTRIBUTING.md`](CONTRIBUTING.md) to submit a theme.
+**Live, pre-alpha.** The repository is stood up and serving: the community themes under
+`themes/`, the contribution flow ([`CONTRIBUTING.md`](CONTRIBUTING.md) plus
+[`GOVERNANCE.md`](GOVERNANCE.md)), the CI hard-gate (the real `theme-validator` crate from the
+main repo, which carries both the value allowlist and the WCAG contrast floors, plus a
+metadata/license lint), the gallery build (`tools/build-index.mjs` plus CI-rendered previews),
+and the `myne.md/themes` section on the website.
+
+Adding a theme is one theme = one folder = one pull request; see
+[`CONTRIBUTING.md`](CONTRIBUTING.md) to submit one.
 
 ## License
 

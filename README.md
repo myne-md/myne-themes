@@ -22,11 +22,12 @@ reject. Themes are **validated on your device, never sandboxed** — we never cl
 a theme is "safe", only that it passed validation.
 
 This is one repo in the multi-repo [Myne](https://github.com/myne-md/myne) project
-under [`myne-md`](https://github.com/myne-md): the main repo holds the desktop
-client, the shared validator crate, and the canonical specs
-([`docs/`](https://github.com/myne-md/myne/tree/develop/docs)); companion repos
-cover the sync server, web, mobile, website, ops, and tooling. Nothing here is
-cryptographic — a theme carries no note content and no key material.
+under [`myne-md`](https://github.com/myne-md): the main repo holds all three clients
+(desktop, web, mobile), the shared validator crate, and the canonical specs
+([`docs/`](https://github.com/myne-md/myne/tree/develop/docs)); companion repos cover the
+sync server, website, ops, clipper, branding, test vectors, the adversarial range, and
+tooling. Nothing here is cryptographic — a theme carries no note content and no key
+material.
 
 ## How it works
 

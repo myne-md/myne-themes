@@ -37,8 +37,11 @@ material.
   a **download link**.
 - **Install** on desktop: download a theme's `theme.json`, then open Myne →
   Settings → Appearance → **Import theme**. The app re-validates it, derives a
-  safe name, and applies it. Custom themes are per-device (they aren't synced),
-  so install on each device you want them on.
+  safe name, and applies it. A custom theme is **vault content**, not a
+  device-local setting: the palette is sealed into the encrypted `vault.themes`
+  blob under the vault key, so it syncs to the vault's other devices and travels
+  in a backup. Import a theme once and it is on every device that unlocks that
+  vault (main repo `docs/threat-model.md`, "Custom-theme CSS-value surface").
 - **No app calls, no tracking.** The app never phones the marketplace — you
   download in your browser and import a local file. There is no in-app store, no
   telemetry, and no download counters.

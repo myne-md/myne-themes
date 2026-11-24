@@ -7,7 +7,7 @@
 |---|---|---|---|
 | `themes/**` (original) | Community themes authored by the contributor | **CC-BY-4.0** (default) | [`LICENSE-THEMES`](LICENSE-THEMES) |
 | `themes/**` (ports) | Faithful ports of an existing scheme | **its upstream license** (per `meta.json`, usually MIT) | see the theme's `meta.json` + `upstream` |
-| everything else | Tooling: CI validator wrapper, contrast/metadata lints, index + preview generators, docs | **AGPL-3.0** | [`LICENSE-TOOLING`](LICENSE-TOOLING) |
+| everything else | Tooling: CI validator wrapper, contrast/metadata lints, index + preview generators, docs | **AGPL-3.0-only** | [`LICENSE-TOOLING`](LICENSE-TOOLING) |
 
 ## Original themes → CC-BY-4.0 (default)
 
@@ -38,7 +38,7 @@ re-expressed into Myne's own tokens) — not upstream code, token names, or file
 
 ## Tooling → AGPL-3.0
 
-The CI scripts, lints, and gallery generators are **AGPL-3.0**, matching the
+The CI scripts, lints, and gallery generators are **AGPL-3.0-only**, matching the
 Myne application code.
 
-> SPDX: `CC-BY-4.0` (themes) · `AGPL-3.0` (tooling).
+> SPDX: `CC-BY-4.0` (themes) · `AGPL-3.0-only` (tooling).

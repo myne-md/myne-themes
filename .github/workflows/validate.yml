@@ -1,0 +1,79 @@
+name: validate
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/checkout@v6
+        with:
+          repository: myne-md/myne
+          path: _myne
+          ref: develop
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.96.0
+
+      - name: Build the client's theme validator
+        run: cargo build --release -p theme-validator --bin validate --manifest-path _myne/Cargo.toml
+
+      - name: Validate every theme and the fixtures
+        run: |
+          set -eu
+          fail=0
+          for f in themes/*/theme.json; do
+            [ -e "$f" ] || continue
+            if _myne/target/release/validate "$f"; then
+              echo "PASS  $f"
+            else
+              echo "FAIL  $f"
+              fail=1
+            fi
+          done
+          _myne/target/release/validate fixtures/contrast/good.json
+          if _myne/target/release/validate fixtures/contrast/bad.json; then
+            echo "bad.json should have been REFUSED by the contrast gate"
+            exit 1
+          fi
+          _myne/target/release/validate fixtures/ornament/all-primitives.json
+          out=$(_myne/target/release/validate fixtures/ornament/unknown-variant.json 2>&1) || {
+            echo "unknown variant should PASS with a warning"
+            exit 1
+          }
+          case "$out" in
+            *"unrecognized ornament value"*) ;;
+            *) echo "expected a warning, got: $out"; exit 1 ;;
+          esac
+          exit $fail
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Node tests, theme lint and index build
+        env:
+          MYNE_DIR: _myne
+        run: |
+          set -eu
+          node --test tools/*.test.mjs
+          for d in themes/*/; do
+            [ -e "$d/theme.json" ] || continue
+            node tools/lint-theme.mjs "$d"
+          done
+          node tools/build-index.mjs /tmp/themes-index.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open("/tmp/themes-index.json", encoding="utf-8"))
+          assert len(data["themes"]) == 12, len(data["themes"])
+          print(f"index themes: {len(data['themes'])}")
+          PY

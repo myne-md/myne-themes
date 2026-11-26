@@ -13,7 +13,7 @@ const THEMES_DIR = join(HERE, "..", "themes");
 export const REPO = {
   org: "myne-md",
   name: "myne-themes",
-  branch: "main",
+  branch: "develop",
 };
 
 const rawBase = (slug, file) =>

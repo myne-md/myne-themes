@@ -11,7 +11,7 @@ theme safe (see [Trust & safety](#trust--safety)).
 
 ## What a submission looks like
 
-One theme = one folder = one pull request:
+One theme = one folder = one pull request against `develop`:
 
 ```
 themes/<your-theme-slug>/
@@ -169,3 +169,17 @@ Two things ornament cannot do, by design: it never changes where anything sits
 (it is paint, so a themed button is exactly where an unthemed one was), and the
 strength of anything rendered *behind text* is capped in Myne's own stylesheet —
 you cannot turn a texture up until the words disappear under it.
+
+## Validate the gallery tooling
+
+The Node tools have no npm dependencies; Node 22 is the only prerequisite.
+
+```bash
+npm test
+for d in themes/*/; do node tools/lint-theme.mjs "$d"; done
+node tools/build-index.mjs /tmp/themes-index.json
+```
+
+CI runs the same checks plus the client's `theme-validator` binary on every
+theme and fixture. Do not commit the generated `index.json` or previews; the
+website syncs them at build time.

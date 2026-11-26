@@ -79,7 +79,7 @@ Adding a theme is one theme = one folder = one pull request; see
 
 Dual-licensed by subtree (see [`LICENSING.md`](LICENSING.md)):
 
-- **Original themes** (`themes/**`) — [CC-BY-4.0](LICENSE-THEMES) by default. Free
+- **Original themes** (`themes/**`) — [CC-BY-4.0](LICENSE) by default. Free
   to use and adapt with attribution (the gallery credits each author).
 - **Ported themes** — keep their **upstream license** (declared per-theme in
   `meta.json`, usually MIT) and credit the original author. Ports are redistributed,

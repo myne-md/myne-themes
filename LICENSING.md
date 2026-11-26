@@ -7,10 +7,10 @@ question rather than a housekeeping one.
 
 | Path / material | What it is | License | File |
 |---|---|---|---|
-| `themes/**` (original) | Community themes authored by the contributor | **CC-BY-4.0** (default) | [`LICENSE-THEMES`](LICENSE-THEMES) |
+| `themes/**` (original) | Community themes authored by the contributor | **CC-BY-4.0** (default) | [`LICENSE`](LICENSE) |
 | `themes/**` (ports) | Faithful ports of an existing scheme | **its upstream license** (per `meta.json`, usually MIT) | the theme's `meta.json` + [`NOTICE`](NOTICE) |
-| `README.md`, `CONTRIBUTING.md`, `GOVERNANCE.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `TRADEMARK.md`, `NOTICE`, `LICENSING.md` | Documentation and project prose | **CC-BY-4.0** | [`LICENSE-THEMES`](LICENSE-THEMES) |
-| `schema/**`, `.github/ISSUE_TEMPLATE/**`, `.github/pull_request_template.md` | Theme-format schema and contribution templates | **CC-BY-4.0** | [`LICENSE-THEMES`](LICENSE-THEMES) |
+| `README.md`, `CONTRIBUTING.md`, `GOVERNANCE.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `TRADEMARK.md`, `NOTICE`, `LICENSING.md` | Documentation and project prose | **CC-BY-4.0** | [`LICENSE`](LICENSE) |
+| `schema/**`, `.github/ISSUE_TEMPLATE/**`, `.github/pull_request_template.md` | Theme-format schema and contribution templates | **CC-BY-4.0** | [`LICENSE`](LICENSE) |
 | `tools/**`, `scripts/**`, `fixtures/**`, `lefthook.yml`, `.github/workflows/**` | Tooling: validator wrapper, lints, index/preview generators, CI | **AGPL-3.0-only** | [`LICENSE-TOOLING`](LICENSE-TOOLING) |
 | `.github/banner.gif`, `.github/banner.png` | Visual and brand assets | **All rights reserved** | [`LICENSE-ASSETS`](LICENSE-ASSETS) |
 

@@ -2,8 +2,10 @@
 
 ## Reporting a vulnerability
 
-Report security issues to **security@myne.md** privately. Please do not open a
-public GitHub issue for a vulnerability.
+Report security issues to **security@myne.md** privately. You can also use
+GitHub private vulnerability reporting: open this repository's **Security** tab
+and choose **Report a vulnerability**. Please do not open a public GitHub issue
+for a vulnerability.
 
 If you do not get an acknowledgment within 5 business days, send a reminder; the
 address may have failed silently.
